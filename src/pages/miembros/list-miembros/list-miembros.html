@@ -11,11 +11,13 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Miembros</ion-title>
-    <ion-buttons end>
+
+    <!-- <ion-buttons end>
       <button navPush="AddMiembroPage" ion-button>
         <ion-icon name="add"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
+
   </ion-navbar>
 
 </ion-header>
@@ -27,12 +29,29 @@
       Miembros
     </ion-list-header>
 
-    <ion-item *ngFor="let persona of personas$ | async" detail-push navPush="EditMiembroPage" [navParams]="{ persona: persona }">
-      <ion-icon name="paper-plane" item-left></ion-icon>
-      <!-- <ion-avatar item-start>
+    <button ion-item text-wrap *ngFor="let persona of personas$ | async" detail-push navPush="EditMiembroPage" [navParams]="{ persona: persona }">
+      <!-- <ion-icon name="paper-plane" item-left></ion-icon> -->
+      <ion-avatar item-start>
         <img src="https://www.freepnglogos.com/uploads/fox-head-black-logo-png-22.png">
-      </ion-avatar> -->
-      {{ persona.nombres }}
-    </ion-item>
+      </ion-avatar>
+      <!-- <h2>{{ persona.nombres }} {{ persona.apellido_paterno }} {{ persona.apellido_materno }}</h2> -->
+      <h3>{{ persona.nombres }} {{ persona.apellido_paterno }} {{ persona.apellido_materno }}</h3>
+      <p>{{ persona.num_doc }}</p>
+      <ion-note item-end class="text-sm">
+        {{ persona.fecha_nacimiento | lowercase }}
+      </ion-note>
+      <!-- <button ion-button clear item-end>View</button> -->
+      <!-- {{ persona.nombres }} {{ persona.apellido_paterno }} {{ persona.apellido_materno }} -->
+    </button>
   </ion-list>
+
+
+  <ion-fab right bottom>
+    <!-- <button ion-fab color="primary" (click)="addMiembro()" navPush="AddMiembroPage" > -->
+    <button ion-fab color="primary" navPush="AddMiembroPage">
+      <!-- <ion-icon name="cloud-upload"></ion-icon> -->
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
 </ion-content>

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { PersonasService } from '../../../services/personas.service';
+// import { PersonasService } from '../../../services/personas.service';
 import { Observable } from 'rxjs';
 import { Persona } from '../../../models';
+import { PersonasProvider } from '../../../providers/personas/personas';
 
 /**
  * Generated class for the ListMiembrosPage page.
@@ -21,9 +22,9 @@ export class ListMiembrosPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private personasService: PersonasService) {
+    private personasProvider: PersonasProvider) {
 
-    this.personas$ = this.personasService
+    this.personas$ = this.personasProvider
       .getList$() // Db list
       .snapshotChanges() // Key and Value
       .map(changes => {
@@ -34,6 +35,10 @@ export class ListMiembrosPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListMiembrosPage');
+  }
+
+  public addMiembro() {
+
   }
 
 }

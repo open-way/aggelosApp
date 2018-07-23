@@ -9,12 +9,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login';
-import { AuthService } from '../services/auth.service';
 import { HomePage } from '../pages/home/home';
 import { MiUnidadPage } from '../pages/mi-unidad/mi-unidad';
 import { UsuariosPage } from '../pages/usuarios/usuarios';
 import { ListMiembrosPage } from '../pages/miembros/list-miembros/list-miembros';
 import { ListUnidadesPage } from '../pages/unidades/list-unidades/list-unidades';
+import { AuthService } from '../providers/security/auth.service';
 
 @Component({
   templateUrl: 'app.html'

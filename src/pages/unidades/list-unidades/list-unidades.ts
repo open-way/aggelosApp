@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { UnidadesService } from '../../../services';
 import { Unidad } from '../../../models';
 import { Observable } from 'rxjs';
+import { UnidadesProvider } from '../../../providers/unidades/unidades';
 
 /**
  * Generated class for the ListUnidadesPage page.
@@ -21,10 +21,10 @@ export class ListUnidadesPage {
   public unidades$: Observable<Unidad[]>
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private unidadesService: UnidadesService,
+    private unidadesProvider: UnidadesProvider,
   ) {
 
-    this.unidades$ = this.unidadesService
+    this.unidades$ = this.unidadesProvider
       .getList$() // Db list
       .snapshotChanges() // Key and Value
       .map(changes => {

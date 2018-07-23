@@ -2,9 +2,10 @@ import { Response } from './response';
 
 export interface Persona extends Response {
     nombres: string;
-    ap_paterno: string;
-    ap_materno: string;
+    apellido_paterno: string;
+    apellido_materno: string;
     num_doc: string;
-    fecha_nac: string;
-    sexo: 'M' | 'F';
+    fecha_nacimiento: string;
+    sexo: string;
+    photo: any;
 }

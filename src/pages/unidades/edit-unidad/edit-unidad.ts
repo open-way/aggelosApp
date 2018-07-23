@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Unidad } from '../../../models';
-import { UnidadesService, ToastService } from '../../../services';
+import { ToastService } from '../../../providers/utils/toast.service';
+import { UnidadesProvider } from '../../../providers/unidades/unidades';
+// import { UnidadesService, ToastService } from '../../../services';
 
 /**
  * Generated class for the EditUnidadPage page.
@@ -24,7 +26,7 @@ export class EditUnidadPage {
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private unidadesService: UnidadesService, private toastService: ToastService) {
+    private unidadesProvider: UnidadesProvider, private toastService: ToastService) {
   }
 
   ionViewDidLoad() {
@@ -32,17 +34,17 @@ export class EditUnidadPage {
   }
 
   public updateUnidad(unidad: Unidad) {
-    this.unidadesService.update$(unidad).then(ref => {
+    this.unidadesProvider.update$(unidad).then(ref => {
       this.toastService.show(`${unidad.nombre} fué guardado!`);
       this.navCtrl.setRoot('ListUnidadesPage')
     });
   }
 
   public removeUnidad(unidad: Unidad) {
-    this.unidadesService.remove$(unidad.key).then(() => {
+    this.unidadesProvider.remove$(unidad.key).then(() => {
       this.toastService.show(`${unidad.nombre} fué Eliminado!`);
       this.navCtrl.setRoot('ListUnidadesPage')
-    })
+    });
   }
 
 }

@@ -14,22 +14,30 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuth } from 'angularfire2/auth';
+
 import { firebaseConfig } from '../config';
-import { AuthService, UnidadesService, ToastService } from '../services';
 import { NgxErrorsModule } from '@ultimate/ngxerrors';
 import { SignupPage } from '../pages/signup/signup';
 import { HomePage } from '../pages/home/home';
 // import { UnidadesPage } from '../pages/unidades/unidades';
 import { MiUnidadPage } from '../pages/mi-unidad/mi-unidad';
 import { UsuariosPage } from '../pages/usuarios/usuarios';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 import { ListMiembrosPageModule } from '../pages/miembros/list-miembros/list-miembros.module';
 import { ListUnidadesPageModule } from '../pages/unidades/list-unidades/list-unidades.module';
-import { PersonasService } from '../services/personas.service';
-// import { AddUnidadPage } from '../pages/add-unidad/add-unidad';
-// import { EditUnidadPage } from '../pages/edit-unidad/edit-unidad';
+import { ProvidersModule } from '../providers/providers.module';
+import { Camera } from '@ionic-native/camera';
+
+
+
+/** Firebase */
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireModule } from 'angularfire2';
+import { AppProviders } from './mockup.provider';
+// import { AngularFireAuth } from 'angularfire2/auth';
+/** */
 
 const PAGES: any[] = [
   LoginPage,
@@ -48,34 +56,29 @@ const MODULES: any[] = [
   ListUnidadesPageModule,
 ]
 
-const PROVIDERS: any[] = [
-  AuthService,
-  UnidadesService,
-  PersonasService,
-
-  ToastService,
-]
-
-
 @NgModule({
   declarations: [
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-
-
     ...PAGES,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     NgxErrorsModule,
+
+    /**
+     * AngularFire.
+     */
     AngularFireModule.initializeApp(firebaseConfig.fire),
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule,
 
     ...MODULES,
-
+    ProvidersModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -87,15 +90,11 @@ const PROVIDERS: any[] = [
     ...PAGES,
   ],
   providers: [
-    ...PROVIDERS,
-    // UnidadesPage,
-
-    AngularFireAuth,
     StatusBar,
     SplashScreen,
+    // Camera,
+    ...AppProviders.getProviders(),
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-
-
   ]
 })
 export class AppModule { }

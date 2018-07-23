@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Unidad } from '../../../models';
-import { UnidadesService, ToastService } from '../../../services';
+import { ToastService } from '../../../providers/utils/toast.service';
+import { UnidadesProvider } from '../../../providers/unidades/unidades';
+// import { UnidadesProviders, ToastService } from '../../../services';
 
 /**
  * Generated class for the AddUnidadPage page.
@@ -26,7 +28,7 @@ export class AddUnidadPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private toastService: ToastService,
-    private unidadesService: UnidadesService) {
+    private unidadesProviders: UnidadesProvider) {
   }
 
   ionViewDidLoad() {
@@ -34,9 +36,8 @@ export class AddUnidadPage {
   }
 
   addUnidad(unidad: Unidad) {
-    this.unidadesService.add$(unidad).then(ref => {
+    this.unidadesProviders.add$(unidad).then(ref => {
       this.toastService.show(`${unidad.nombre} fué Agregado!`);
-
       this.navCtrl.setRoot('ListUnidadesPage', { key: ref.key })
     });
   }

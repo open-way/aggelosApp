@@ -1,6 +1,6 @@
 
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Response } from '../models';
+import { Response } from '../../models';
 
 
 export class ResourceService<Model extends Response> {

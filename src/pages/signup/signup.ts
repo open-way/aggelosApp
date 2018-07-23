@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+// import { AuthService } from '../../services/auth.service';
 import { HomePage } from '../home/home';
+import { AuthService } from '../../providers/security/auth.service';
 
 /**
  * Generated class for the SignupPage page.
